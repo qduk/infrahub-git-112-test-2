@@ -1,0 +1,16 @@
+query SecondDeviceInfo($name: String!) {
+  TestingDevice(name__value: $name) {
+    edges {
+      node {
+        id
+        __typename
+        name {
+          value
+        }
+        role {
+          value
+        }
+      }
+    }
+  }
+}

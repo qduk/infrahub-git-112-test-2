@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://schema.infrahub.app/python-sdk/repository-config/develop.json
+---
+queries:
+  - name: second_device_info
+    file_path: queries/second_device_info.gql
+
+jinja2_transforms:
+  - name: second_device_config
+    description: "Plain-text configuration for a test device, from the second repository"
+    query: second_device_info
+    template_path: templates/device_config.j2
+
+generator_definitions:
+  - name: second_device_tags
+    file_path: generators/second_device_tags.py
+    class_name: SecondDeviceTagsGenerator
+    targets: test_devices
+    query: second_device_info
+    parameters:
+      name: name__value
+
+artifact_definitions:
+  - name: "Second device config"
+    artifact_name: second-device-config
+    parameters:
+      name: name__value
+    content_type: text/plain
+    targets: test_devices
+    transformation: second_device_config

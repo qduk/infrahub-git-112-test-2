@@ -1,0 +1,4 @@
+{% set device = data.TestingDevice.edges[0].node %}
+hostname {{ device.name.value }}
+! role: {{ device.role.value }}
+! repository: infrahub-git-112-test-2
